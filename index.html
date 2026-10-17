@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucas Amaral | Links e parcerias</title>
+  <meta name="description" content="Onde acompanhar Lucas Amaral e como propor uma parceria.">
+  <meta property="og:title" content="Lucas Amaral | Links e parcerias">
+  <meta property="og:description" content="Streamer e criador de conteúdo no Brasil.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#130F15">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #130F15;
+      --panel: #1B161E;
+      --line: rgba(243, 234, 238, .13);
+      --text: #F3EAEE;
+      --muted: #A99CA6;
+      --faint: #7A6E78;
+      --gold: #E7C7A0;
+      color-scheme: dark;
+    }
+
+    * { box-sizing: border-box; }
+
+    [hidden] { display: none !important; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      background: var(--ink);
+      color: var(--text);
+      font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+      border-radius: .5rem;
+    }
+
+    .skip {
+      left: 1rem;
+      padding: .75rem 1rem;
+      position: fixed;
+      top: .75rem;
+      transform: translateY(-140%);
+      z-index: 10;
+      background: var(--gold);
+      color: #1A1218;
+      border-radius: .6rem;
+      font-weight: 700;
+    }
+
+    .skip:focus { transform: translateY(0); }
+
+    /* Estrutura: identidade fixa à esquerda, conteúdo à direita no desktop */
+    .layout {
+      width: min(100% - 2.5rem, 72rem);
+      margin: 0 auto;
+      padding: 3rem 0;
+      display: grid;
+      gap: 3.5rem;
+    }
+
+    .identity { max-width: 24rem; }
+
+    .avatar {
+      width: 7rem;
+      height: 7rem;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      background: var(--panel);
+      color: var(--gold);
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+
+    .avatar span,
+    .avatar img { grid-area: 1 / 1; }
+
+    .avatar.has-image span { display: none; }
+
+    /* Enquanto nenhuma foto carregar, a imagem fica escondida (evita o ícone de imagem quebrada). */
+    .avatar:not(.has-image) img { display: none; }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 1.6rem 0 0;
+      font-size: clamp(3.4rem, 14vw, 5rem);
+      font-weight: 800;
+      line-height: .9;
+      letter-spacing: -.035em;
+    }
+
+    h1 span { display: block; }
+
+    .tagline {
+      margin: 1.4rem 0 .5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .bio, .location { color: var(--muted); }
+
+    .bio { margin: 0 0 1rem; max-width: 22rem; }
+
+    .location {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin: 0;
+      font-size: .92rem;
+    }
+
+    h2 {
+      margin: 0 0 1.1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -.01em;
+    }
+
+    /* Lista de plataformas: o estilo do texto mostra o status */
+    .lineup {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .lineup li { border-bottom: 1px solid var(--line); }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "name go"
+        "meta meta";
+      gap: .35rem 1rem;
+      align-items: center;
+      padding: 1.25rem 0;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .name {
+      grid-area: name;
+      font-size: clamp(2.5rem, 10vw, 3.7rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -.03em;
+      transition: color .2s ease;
+    }
+
+    .meta {
+      grid-area: meta;
+      display: grid;
+      gap: .1rem;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .1rem 1rem;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .dot {
+      width: .62rem;
+      height: .62rem;
+      flex: none;
+      margin-right: .5rem;
+      border-radius: 50%;
+    }
+
+    .go {
+      grid-area: go;
+      width: 1.7rem;
+      height: 1.7rem;
+      color: var(--muted);
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    /* ativo: texto cheio e ponto dourado pulsando */
+    .row--ativo .dot {
+      background: var(--gold);
+      animation: pulse 2.6s ease-out infinite;
+    }
+
+    /* em pausa: texto só com contorno */
+    .row--pausa .name {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--muted);
+    }
+
+    .row--pausa .dot { border: 1.5px solid var(--muted); }
+
+    /* em breve: texto apagado e sem link */
+    .row--embreve .name { color: var(--faint); }
+
+    .row--embreve .status { color: var(--muted); }
+
+    .row--embreve .dot { border: 1.5px dashed var(--faint); }
+
+    a.row:hover .name { color: var(--gold); }
+
+    a.row--pausa:hover .name {
+      color: transparent;
+      -webkit-text-stroke-color: var(--gold);
+    }
+
+    a.row:hover .go {
+      color: var(--gold);
+      transform: translate(.2rem, -.2rem);
+    }
+
+    @supports not (-webkit-text-stroke: 1px red) {
+      .row--pausa .name { color: var(--muted); }
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(231, 199, 160, .5); }
+      70%, 100% { box-shadow: 0 0 0 .55rem rgba(231, 199, 160, 0); }
+    }
+
+    /* Parcerias */
+    .partners { margin-top: 4.5rem; }
+
+    .partners p { max-width: 34rem; margin: 0 0 1.4rem; color: var(--muted); }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn {
+      min-height: 3rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .7rem 1.2rem;
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color .2s ease, background-color .2s ease;
+    }
+
+    .btn:hover { border-color: var(--gold); }
+
+    .btn--primary {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: #1A1218;
+    }
+
+    .btn--primary:hover { background: #F0D5B3; }
+
+    .copy-status {
+      min-height: 1.5rem;
+      margin: .8rem 0 0 !important;
+      color: var(--gold) !important;
+      font-size: .92rem;
+    }
+
+    .direct { margin: .3rem 0 0 !important; font-size: .92rem; }
+
+    .direct a { color: var(--gold); font-weight: 600; }
+
+    footer {
+      margin-top: 4rem;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    @media (max-width: 39.99rem) {
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+
+    @media (min-width: 40rem) {
+      .row {
+        grid-template-columns: minmax(0, 1fr) auto 2rem;
+        grid-template-areas: "name meta go";
+        gap: 1rem 1.5rem;
+      }
+
+      .meta { justify-items: end; text-align: right; }
+      .meta-line { justify-content: flex-end; }
+    }
+
+    @media (min-width: 60rem) {
+      .layout {
+        grid-template-columns: 20rem minmax(0, 1fr);
+        column-gap: 4rem;
+        padding: 5rem 0;
+      }
+
+      .identity {
+        position: sticky;
+        top: 5rem;
+        align-self: start;
+      }
+
+      .content {
+        padding-left: 4rem;
+        border-left: 1px solid var(--line);
+      }
+
+      .partners { margin-top: 5rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+  <div class="layout">
+    <header class="identity">
+      <div class="avatar" id="avatar" aria-hidden="true">
+        <span>LA</span>
+        <!-- A imagem é escolhida no script: foto.jpg (se existir), depois o avatar da Twitch, depois as iniciais. -->
+        <img id="avatar-img" alt="">
+      </div>
+      <h1><span>Lucas</span><span>Amaral</span></h1>
+      <p class="tagline">Streamer e criador de conteúdo</p>
+      <p class="bio">Criando conteúdo, jogando com a comunidade e mostrando projetos ao vivo e em vídeo.</p>
+      <p class="location">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.1 7-12A7 7 0 1 0 5 9c0 6.9 7 12 7 12Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
+        Brasil
+      </p>
+    </header>
+
+    <main id="conteudo" class="content">
+      <section aria-labelledby="plataformas">
+        <h2 id="plataformas">Onde me encontrar</h2>
+        <!--
+          EDITE AQUI: para mudar o estado de uma plataforma, troque a classe da linha:
+          row--ativo (no ar), row--pausa (parada por enquanto) ou row--embreve (ainda não existe).
+          Quando criar o Instagram ou o Discord, troque o <div> por um <a href="..."> como nas outras linhas.
+        -->
+        <ul class="lineup">
+          <li>
+            <a class="row row--ativo" href="https://www.twitch.tv/luscaamarall" target="_blank" rel="noopener">
+              <span class="name">Twitch</span>
+              <span class="meta">
+                <span>luscaamarall</span>
+              </span>
+              <svg class="go" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="row row--ativo" href="https://www.youtube.com/@luscaAmaral" target="_blank" rel="noopener">
+              <span class="name">YouTube</span>
+              <span class="meta">
+                <span>@luscaAmaral</span>
+              </span>
+              <svg class="go" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="row row--pausa" href="https://kick.com/luscaamarall" target="_blank" rel="noopener">
+              <span class="name">Kick</span>
+              <span class="meta">
+                <span>luscaamarall</span>
+                <span class="meta-line">
+                  <span class="status"><i class="dot"></i>Em pausa</span>
+                </span>
+              </span>
+              <svg class="go" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </li>
+          <li>
+            <div class="row row--embreve">
+              <span class="name">Instagram</span>
+              <span class="meta">
+                <span class="meta-line"><span class="status"><i class="dot"></i>Em breve</span></span>
+              </span>
+            </div>
+          </li>
+          <li>
+            <div class="row row--embreve">
+              <span class="name">Discord</span>
+              <span class="meta">
+                <span class="meta-line"><span class="status"><i class="dot"></i>Em breve</span></span>
+              </span>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="partners" id="parcerias" aria-labelledby="parcerias-titulo">
+        <h2 id="parcerias-titulo">Parcerias</h2>
+        <p>Tem uma marca ou produto que combina com a comunidade?</p>
+        <p class="direct">Contato para parcerias em breve.</p>
+      </section>
+
+      <footer>© 2026 Lucas Piassarollo Amaral</footer>
+    </main>
+  </div>
+
+  <script>
+    // Seguidores e espectadores não aparecem nesta página; ficam no stats.json para a futura página de métricas.
+    // Aqui o stats.json só é lido para pegar a foto de perfil. Se ele não carregar, usa este endereço.
+    const FALLBACK_AVATAR = "https://static-cdn.jtvnw.net/jtv_user_pictures/8a5b901a-62c8-4fb4-ade4-e1204165ae23-profile_image-300x300.png";
+
+    // Avatar: tenta cada fonte em ordem e fica com a primeira que carregar.
+    // 1) foto.jpg na raiz do repositório (EDITE AQUI: suba sua foto com esse nome para ela ter prioridade)
+    // 2) avatar atual da Twitch, vindo do stats.json
+    // 3) avatar antigo da Twitch, como último recurso
+    // Se nenhuma carregar, ficam as iniciais "LA".
+    let avatarStarted = false;
+    function startAvatar(twitchImage) {
+      if (avatarStarted) return;
+      avatarStarted = true;
+      const box = document.getElementById("avatar");
+      const img = document.getElementById("avatar-img");
+      const sources = ["foto.jpg", twitchImage, FALLBACK_AVATAR]
+        .filter((src, index, all) => src && all.indexOf(src) === index);
+      const next = () => {
+        const src = sources.shift();
+        if (src) img.src = src;
+        else box.classList.remove("has-image");
+      };
+      img.addEventListener("load", () => box.classList.add("has-image"));
+      img.addEventListener("error", next);
+      next();
+    }
+
+    async function loadAvatar() {
+      let image = "";
+      try {
+        const response = await fetch("stats.json", { cache: "no-store" });
+        if (response.ok) image = String((await response.json())?.perfil?.imagem || "");
+      } catch {
+        // Sem stats.json, segue só com foto.jpg e o endereço de reserva.
+      }
+      startAvatar(image);
+    }
+
+    loadAvatar();
+  </script>
+</body>
+</html>
